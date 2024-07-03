@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain.chains import LLMChain
 from langchain_community.document_loaders.csv_loader import CSVLoader
@@ -10,7 +11,7 @@ from langchain.llms import HuggingFaceHub, CTransformers
 from langchain.prompts import PromptTemplate
 import streamlit as st
 
-
+load_dotenv()
 
 hub_llm = HuggingFaceEndpoint(
     endpoint_url="openai-community/gpt2",
@@ -129,11 +130,10 @@ if user_input:
     response = qa_chain({"query": user_input})
     result = response["result"]
     
-
     st.session_state.conversation_history.append({"question": user_input, "answer": result})
     
-    st.write(result)
-
+    st.write(result)  # or use st.text(result) or st.markdown(result) depending on the format
+    
 
 with st.expander('Conversation History'):
     for entry in st.session_state.conversation_history:
