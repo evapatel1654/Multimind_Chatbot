@@ -1,4 +1,4 @@
-from dotenv import load_dotenv
+
 from langchain_huggingface import HuggingFaceEndpoint
 from langchain.chains import LLMChain
 from langchain_community.document_loaders.csv_loader import CSVLoader
@@ -11,7 +11,6 @@ from langchain.llms import HuggingFaceHub, CTransformers
 from langchain.prompts import PromptTemplate
 import streamlit as st
 
-load_dotenv()
 
 hub_llm = HuggingFaceEndpoint(
     endpoint_url="openai-community/gpt2",
